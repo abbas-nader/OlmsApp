@@ -1,13 +1,12 @@
 ﻿using OlmsApp.DTOs;
-using OlmsApp.Models;
-
+using OlmsApp.Shared;
 namespace OlmsApp.Interfaces;
 
 public interface IPatientService
 {
-    public void InsertPatient(CreatePatientDto patientDto);
-    public bool UpdatePatient(UpdatePatientDto patientDto);
-    public void DeletePatient(int patientId);
-    public IReadOnlyList<PatientDto> GetPatients();
-    public PatientDto?  GetPatientById(int id);
+    public OperationResult InsertPatient(CreatePatientDto patientDto);
+    public OperationResult UpdatePatient(UpdatePatientDto patientDto);
+    public OperationResult DeletePatient(Guid patientId);
+    public OperationResult<IReadOnlyList<PatientDto>> GetPatients();
+    public OperationResult<PatientDto> GetPatientById(Guid id);
 }

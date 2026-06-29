@@ -6,7 +6,7 @@ public interface IPatientRepository
 {
     public void Insert(Patient patient);
     public bool Update(Patient patient);
-    public void Delete(int patientId);
+    public bool Delete(Guid patientId);
     public IReadOnlyList<Patient>  GetAll();
-    public  Patient? GetById(int patientId);
+    public Patient? GetById(Guid patientId);
 }

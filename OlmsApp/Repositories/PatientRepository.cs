@@ -5,16 +5,16 @@ namespace OlmsApp.Repositories;
 
 public class PatientRepository : IPatientRepository
 {
-    private readonly List<Patient>  _patients = [];
+    private static readonly List<Patient>  Patients = [];
 
     public void Insert(Patient patient)
     {
-        _patients.Add(patient);
+        Patients.Add(patient);
     }
 
     public bool Update(Patient patient)
     {
-        var existingPatient = _patients.FirstOrDefault(p => p.Id == patient.Id);
+        var existingPatient = Patients.FirstOrDefault(p => p.Id == patient.Id);
         if (existingPatient == null)
             return false;
         existingPatient.FirstName = patient.FirstName;
@@ -24,21 +24,22 @@ public class PatientRepository : IPatientRepository
         return true;
     }
 
-    public void Delete(int patientId)
+    public bool Delete(Guid patientId)
     {
-        var patientToDelete = _patients.FirstOrDefault(p => p.Id == patientId);
+        var patientToDelete = Patients.FirstOrDefault(p => p.Id == patientId);
         if (patientToDelete == null)
-            return;
-        _patients.Remove(patientToDelete);
+            return false;
+        Patients.Remove(patientToDelete);
+        return true;
     }
 
     public IReadOnlyList<Patient> GetAll()
     {
-        return _patients;
+        return Patients;
     }
 
-    public Patient? GetById(int patientId)
+    public Patient? GetById(Guid patientId)
     {
-          return _patients.FirstOrDefault(p => p.Id == patientId);
+          return Patients.FirstOrDefault(p => p.Id == patientId);
     }
 }
