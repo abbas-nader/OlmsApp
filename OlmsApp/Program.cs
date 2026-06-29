@@ -2,6 +2,7 @@ using FluentValidation;
 using OlmsApp.DTOs;
 using OlmsApp.Interfaces;
 using OlmsApp.Repositories;
+using OlmsApp.Services;
 using OlmsApp.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddTransient<IValidator<CreatePatientDto>, CreatePatientDtoValidator>();
 builder.Services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoValidator>();
+builder.Services.AddScoped<IPatientService, PatientService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();
 
