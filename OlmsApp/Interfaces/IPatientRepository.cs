@@ -5,7 +5,8 @@ namespace OlmsApp.Interfaces;
 public interface IPatientRepository
 {
     public void Insert(Patient patient);
-    public void Update(Patient patient);
-    public void Delete(Patient patient);
-    public List<Patient>? Select();
+    public bool Update(Patient patient);
+    public void Delete(int patientId);
+    public IReadOnlyList<Patient>  GetAll();
+    public  Patient? GetById(int patientId);
 }

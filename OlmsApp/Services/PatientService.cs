@@ -1,25 +1,32 @@
-﻿using OlmsApp.Interfaces;
+﻿using OlmsApp.DTOs;
+using OlmsApp.Interfaces;
 using OlmsApp.Models;
 
 namespace OlmsApp.Services;
 
 public class PatientService( IPatientService iPatientService): IPatientService
 {
-    public void InsertPatient(Patient patient)
+    public void InsertPatient(CreatePatientDto patientDto)
     {
+        
     }
 
-    public void UpdatePatient(Patient patient)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DeletePatient(Patient patient)
+    public bool UpdatePatient(UpdatePatientDto patientDto)
     {
         throw new NotImplementedException();
     }
 
-    public List<Patient> GetPatients()
+    public void DeletePatient(int patientId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IReadOnlyList<PatientDto> GetPatients()
+    {
+        throw new NotImplementedException();
+    }
+
+    public PatientDto? GetPatientById(int id)
     {
         throw new NotImplementedException();
     }
