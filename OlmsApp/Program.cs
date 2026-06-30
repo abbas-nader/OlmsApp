@@ -1,6 +1,7 @@
 using FluentValidation;
 using OlmsApp.DTOs;
 using OlmsApp.Interfaces;
+using OlmsApp.Middlewares;
 using OlmsApp.Repositories;
 using OlmsApp.Services;
 using OlmsApp.Validators;
@@ -25,7 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<AuthorizeMiddleware>();
 app.MapControllers();
-
 app.Run();
 
