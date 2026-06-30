@@ -26,7 +26,7 @@ public class OperationResult<T>(bool isSuccess, string message, T data) : Operat
 
         public new static OperationResult<T?> Failed(string message)
         {
-            return new OperationResult<T?>(false,message,default);
+            return new OperationResult<T?>(false,message,default!);
         }
         
 }

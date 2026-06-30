@@ -14,27 +14,21 @@ public class PatientController(IPatientService patientService) : ControllerBase
     public IActionResult CreatePatient([FromBody] CreatePatientDto patient)
     {
         var result = _patientService.InsertPatient(patient);
-        if (!result.IsSuccess)
-            return BadRequest(result.Message);
-        return Ok(result);
+        return !result.IsSuccess ? BadRequest(result.Message) : Ok(result);
     }
 
     [HttpGet]
     public IActionResult GetAllPatients()
     {
         var result = _patientService.GetPatients();
-        if (!result.IsSuccess)
-            return NotFound(result.Message);
-        return Ok(result);
+        return !result.IsSuccess ? NotFound(result.Message) : Ok(result);
     }
 
     [HttpGet("{id}")]
     public IActionResult GetPatientById(Guid id)
     {
         var result = _patientService.GetPatientById(id);
-        if (!result.IsSuccess)
-            return NotFound(result.Message);
-        return Ok(result);
+        return !result.IsSuccess ? NotFound(result.Message) : Ok(result);
     }
 
     [HttpDelete("{id}")]
@@ -42,9 +36,7 @@ public class PatientController(IPatientService patientService) : ControllerBase
     {
         _patientService.GetPatientById(id);
         var result = _patientService.DeletePatient(id);
-        if (!result.IsSuccess)
-            return NotFound(result.Message);
-        return Ok(result);
+        return !result.IsSuccess ? NotFound(result.Message) : Ok(result);
     }
 
     [HttpPut("{id}")]
@@ -53,8 +45,6 @@ public class PatientController(IPatientService patientService) : ControllerBase
         patient.Id = id;
         _patientService.GetPatientById(id);
         var result = _patientService.UpdatePatient(patient);
-        if (!result.IsSuccess)
-            return NotFound(result.Message);
-        return Ok(result);
+        return !result.IsSuccess ? NotFound(result.Message) : Ok(result);
     }
 }
