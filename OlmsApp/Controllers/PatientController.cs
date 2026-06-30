@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OlmsApp.ActionFilter;
 using OlmsApp.DTOs;
 using OlmsApp.Interfaces;
 
@@ -6,6 +7,7 @@ namespace OlmsApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[ServiceFilter(typeof(AuthorizeActionFilter))]
 public class PatientController(IPatientService patientService) : ControllerBase
 {
     private readonly IPatientService _patientService = patientService;
